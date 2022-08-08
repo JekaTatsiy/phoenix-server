@@ -1,0 +1,17 @@
+<h2>Topics
+    <%= link to: Routes.topic_path(@conn, :new) do %>
+        <span style="font-size:50%">add topic</span>
+    <% end %>
+</h2>
+<ul class="collection">
+    <%= for topic <- @topics do %>
+    <li class = "collection-item">
+        <%= topic.title %>
+
+        <div class="right">
+            <%= link "Edit", to: Routes.topic_path(@conn, :edit, topic) %>
+            <%= link "Delete", to: Routes.topic_path(@conn, :delete, topic), method: :delete %>
+        </div>
+    </li>
+    <% end %>
+</ul>
