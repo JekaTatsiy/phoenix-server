@@ -4,7 +4,6 @@ defmodule MyappWeb.Plugs.SetUser do
 
   alias Myapp.Repo
   alias Myapp.User
-  alias Myapp.Routes
 
   def init(_params) do
   end

@@ -9,6 +9,7 @@ defmodule MyappWeb.Router do
     plug(:protect_from_forgery)
     plug(:put_secure_browser_headers)
     plug(MyappWeb.Plugs.SetUser)
+   # plug(MyappWeb.Plugs.RequireAuth)
   end
 
   pipeline :api do
