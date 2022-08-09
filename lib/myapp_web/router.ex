@@ -8,6 +8,7 @@ defmodule MyappWeb.Router do
     plug(:put_root_layout, {MyappWeb.LayoutView, :root})
     plug(:protect_from_forgery)
     plug(:put_secure_browser_headers)
+    plug(MyappWeb.Plugs.SetUser)
   end
 
   pipeline :api do
@@ -17,12 +18,15 @@ defmodule MyappWeb.Router do
   scope "/", MyappWeb do
     pipe_through(:browser)
 
-    # get("/", TopicController, :index)
-    # get("/topics/new", TopicController, :new)
-    # post("/topics", TopicController, :create)
-    # get("/topics/:id/edit", TopicController, :edit)
-    # put("/topics/:id", TopicController, :update)
     resources("/", TopicController)
+  end
+
+  scope "/auth", MyappWeb do
+    pipe_through(:browser)
+
+    get("/signout", AuthController, :signout)
+    get("/:provider", AuthController, :request)
+    get("/:provider/callback", AuthController, :callback)
   end
 
   # Other scopes may use custom stacks.
