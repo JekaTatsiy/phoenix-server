@@ -7,6 +7,7 @@ defmodule Myapp.User do
     field(:provider, :string)
     field(:token, :string)
     has_many(:topics, Myapp.Topic)
+    has_many(:comments, Myapp.Comment)
     timestamps()
   end
 
