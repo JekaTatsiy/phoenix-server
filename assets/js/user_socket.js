@@ -80,17 +80,27 @@ function renderComments(comments) {
   const renderComments =
     document.querySelector(".collection")
       .innerHTML = comments
-        .map(comment => commentTemplate(comment.content))
+        .map(comment => commentTemplate(comment))
         .join('')
 }
 
 function renderComment(event) {
   document.querySelector(".collection")
-    .innerHTML += commentTemplate(event.comment.content)
+    .innerHTML += commentTemplate(event.comment)
 }
 
-function commentTemplate(content) {
-  return `<li class="collecttion-item">${content}</li>`
+function commentTemplate(comment) {
+  let user = "Anonimous"
+  if (comment.user){
+    user = comment.user.email
+  }
+
+  return `<li class="collecttion-item">
+    ${comment.content}
+    <div class = "secondary-content">
+      ${user}
+    </div>
+  </li>`
 }
 
 

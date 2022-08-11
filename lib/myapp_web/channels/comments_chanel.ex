@@ -11,7 +11,7 @@ defmodule Myapp.CommentsChanel do
     topic =
       Topic
       |> Repo.get(topic_id)
-      |> Repo.preload(:comments)
+      |> Repo.preload(comments: [:user])
 
     {:ok, %{comments: topic.comments}, assign(socket, :topic, topic)}
   end
